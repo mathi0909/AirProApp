@@ -12,5 +12,5 @@ public interface IAirProFlightsDao extends JpaRepository<Flights, UUID>{
 	
 	List<Flights> findByDepartureTimeBetween(LocalDateTime startDate,LocalDateTime endDate);
 	List<Flights> findByDepartureTimeBetweenAndFlightCodeIgnoreCase(LocalDateTime startDate,LocalDateTime endDate,String flightCode);
-	 
+	Boolean existsByFlightCodeIgnoreCase(String flightCode);
 }
