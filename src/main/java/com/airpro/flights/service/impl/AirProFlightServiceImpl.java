@@ -44,23 +44,23 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 			log.error(ex.getMessage());
 			throw ExceptionResolver.resolve(ex);
 		} finally {
-			log.info("Enter get flights ");
+			log.info("Exists get flights ");
 		}
 
 	}
 
 	@Override
-	public Flights flights(Flights Flights) throws SystemException{
+	public Flights flights(Flights flights) throws SystemException {
 		log.info("Enter save flights ");
 		try {
-			return airProFlightsDao.save(Flights);
-		}catch (Exception ex) {
+			return airProFlightsDao.save(flights);
+		} catch (Exception ex) {
 			log.error(ex.getMessage());
 			throw ExceptionResolver.resolve(ex);
 		} finally {
 			log.info("Exists save flights ");
 		}
-		
+
 	}
 
 	@Override
