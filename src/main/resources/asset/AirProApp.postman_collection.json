@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "e056f647-e4b1-41ab-b4b6-25b6458b0639",
+		"name": "AirProApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Flights",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightNumber\": \"LFk13\",\r\n    \"departurePort\": \"MA\",\r\n    \"arrivalPort\": \"ML\",\r\n    \"flightCode\": \"LF\",\r\n    \"departureTime\": \"2022-05-01T02:00:23Z\",\r\n    \"arrivalTime\": \"2022-04-30T11:00:23Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8084/flights",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"flights"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Today's Flight",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8084/flights/LF",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8084",
+					"path": [
+						"flights",
+						"LF"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
