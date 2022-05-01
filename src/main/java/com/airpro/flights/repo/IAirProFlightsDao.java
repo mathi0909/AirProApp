@@ -11,8 +11,7 @@ import com.airpro.common.model.Flights;
 
 public interface IAirProFlightsDao extends JpaRepository<Flights, UUID> {
 
-//	@Query("SELECT new com.airpro.common.dto.FlightDTO(flight.flightNumber,flight.departurePort,flight.arrivalPort,flight.departureTime,flight.arrivalTime)"
-//			+ " FROM Flights flight where flight.departureTime between :startDate and :endDate ")
+
 	List<IFlightDTO> findByDepartureTimeBetween(LocalDateTime startDate, LocalDateTime endDate);
 
 	List<IFlightDTO> findByDepartureTimeBetweenAndFlightCodeIgnoreCase(LocalDateTime startDate, LocalDateTime endDate,
