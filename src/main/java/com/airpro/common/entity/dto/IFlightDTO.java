@@ -1,4 +1,4 @@
-package com.airpro.common.dto;
+package com.airpro.common.entity.dto;
 
 import java.time.LocalDateTime;
 

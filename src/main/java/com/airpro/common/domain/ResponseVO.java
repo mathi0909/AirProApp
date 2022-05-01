@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.airpro.common.model.Flights;
+import com.airpro.common.entity.model.Flights;
 
 import lombok.Data;
 

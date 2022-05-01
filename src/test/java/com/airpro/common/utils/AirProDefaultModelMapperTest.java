@@ -20,8 +20,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import com.airpro.common.dto.IFlightDTO;
-import com.airpro.common.model.Flights;
+import com.airpro.common.entity.dto.IFlightDTO;
+import com.airpro.common.entity.model.Flights;
 
 class AirProDefaultModelMapperTest {
 

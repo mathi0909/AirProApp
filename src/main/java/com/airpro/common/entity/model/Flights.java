@@ -1,4 +1,4 @@
-package com.airpro.common.model;
+package com.airpro.common.entity.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

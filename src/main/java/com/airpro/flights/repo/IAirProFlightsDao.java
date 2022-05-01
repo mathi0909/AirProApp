@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.airpro.common.dto.IFlightDTO;
-import com.airpro.common.model.Flights;
+import com.airpro.common.entity.dto.IFlightDTO;
+import com.airpro.common.entity.model.Flights;
 
 public interface IAirProFlightsDao extends JpaRepository<Flights, UUID> {
 

@@ -25,8 +25,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
 
 import com.airpro.common.domain.ResponseVO;
+import com.airpro.common.entity.model.Flights;
 import com.airpro.common.exceptionhandler.SystemException;
-import com.airpro.common.model.Flights;
 import com.airpro.flights.service.impl.AirProFlightServiceImpl;
 
 class AirProFlightsControllerImplTest {

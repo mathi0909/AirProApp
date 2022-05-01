@@ -19,7 +19,7 @@ public class BusinessException extends SystemException{
 
 	public BusinessException() {
 		super();
-		this.errorMsg = "Something went wrong";
+		this.errorMsg = env.getProperty("error.air.pro.default.msg");
 		this.status = HttpStatus.INTERNAL_SERVER_ERROR;
 	}
 	
