@@ -129,14 +129,13 @@ class AirProFlightServiceImplTest {
 		
 	
 	}
-
-	@SuppressWarnings("deprecation")
+ 
 	@Test
 	@DisplayName("Test to get the current day flights")
 	void testFetchFlights 	() throws SystemException {
-		Flights f1 = new Flights(UUID.randomUUID(), "asd", "123", "123", "EK",
+		Flights f1 = new Flights(UUID.randomUUID(), "EK123", "SYN", "ML", "EK",
 				LocalDate.now(ZoneId.of("UTC")).atStartOfDay(), LocalDate.now(ZoneId.of("UTC")).atTime(LocalTime.MAX));
-		Flights f2 = new Flights(UUID.randomUUID(), "asd", "123", "123", "EK",
+		Flights f2 = new Flights(UUID.randomUUID(), "CX159", "CL", "MD", "CX",
 				LocalDate.now(ZoneId.of("UTC")).atStartOfDay(), LocalDate.now(ZoneId.of("UTC")).atTime(LocalTime.MAX));
 		List<Flights> lst = new ArrayList<>();
 		lst.add(f2);
@@ -159,13 +158,6 @@ class AirProFlightServiceImplTest {
 	@Test
 	@DisplayName("Test for invalid flight code")
 	void testInvalidFlightCode() throws SystemException {
-//		Flights f1 = new Flights(UUID.randomUUID(), "asd", "123", "123", "EK",
-//				LocalDate.now(ZoneId.of("UTC")).atStartOfDay(), LocalDate.now(ZoneId.of("UTC")).atTime(LocalTime.MAX));
-//		Flights f2 = new Flights(UUID.randomUUID(), "asd", "123", "123", "EK",
-//				LocalDate.now(ZoneId.of("UTC")).atStartOfDay(), LocalDate.now(ZoneId.of("UTC")).atTime(LocalTime.MAX));
-//		List<Flights> lst = new ArrayList<>();
-//		lst.add(f2);
-//		lst.add(f1);
 
 		AirProFilter filter = new AirProFilter("CX", LocalDate.now(ZoneId.of("UTC")).atTime(LocalTime.MAX),
 				LocalDate.now(ZoneId.of("UTC")).atStartOfDay());
@@ -174,9 +166,7 @@ class AirProFlightServiceImplTest {
 		when(airProFlightsDao.existsByFlightCodeIgnoreCase(anyString())).thenReturn(false);
 		when(airProFlightsDao.findByDepartureTimeBetweenAndFlightCodeIgnoreCase(
 				any(LocalDateTime.class), any(LocalDateTime.class),anyString())).thenReturn(lstDto);
-		
-//		assertEquals(2,  airProFlightServiceImpl.flights("cq").getFlights().size());
-		
+			
 		assertThrows(SystemException.class, ()->{
 			 airProFlightServiceImpl.flights(anyString());
 		 },"Flight Code Doesn't Exists should be thrown");

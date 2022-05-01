@@ -75,8 +75,6 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 			if (!airProFlightsDao.existsByFlightCodeIgnoreCase(flightCode)) {
 				throw new BusinessException("Flight Code Doesn't Exists", HttpStatus.BAD_REQUEST);
 			}
-			
-			int a = 2/0;
 
 			ResponseVO responseVO = new ResponseVO();
 			
