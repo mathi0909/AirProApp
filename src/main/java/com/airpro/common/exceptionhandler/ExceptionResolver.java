@@ -6,6 +6,6 @@ public class ExceptionResolver {
 		if (ex instanceof BusinessException)
 			return (BusinessException) ex;
 		else
-			return new SystemException(ex);
+			return new BusinessException(ex.getMessage());
 	}
 }

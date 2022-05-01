@@ -9,6 +9,7 @@ import com.airpro.common.exceptionhandler.BusinessException;
 import com.airpro.common.exceptionhandler.ExceptionResolver;
 import com.airpro.common.exceptionhandler.SystemException;
 import com.airpro.common.model.Flights;
+import com.airpro.common.utils.AirProDefaultModelMapper;
 import com.airpro.common.utils.AirProFilters.AirProFilter;
 import com.airpro.common.utils.AirProFilters.AirProFlightFilters;
 import com.airpro.flights.repo.IAirProFlightsDao;
@@ -23,12 +24,14 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 	IAirProFlightsDao airProFlightsDao;
 	AirProFlightFilters airProFlightFilters;
 	Environment env;
+	AirProDefaultModelMapper airProDefaultModelMapper;
 
 	public AirProFlightServiceImpl(IAirProFlightsDao airProFlightsDao, AirProFlightFilters airProFlightFilters,
-			Environment env) {
+			Environment env,AirProDefaultModelMapper airProDefaultModelMapper) {
 		this.airProFlightsDao = airProFlightsDao;
 		this.airProFlightFilters = airProFlightFilters;
 		this.env = env;
+		this.airProDefaultModelMapper = airProDefaultModelMapper;
 	}
 
 	@Override
@@ -37,8 +40,8 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 		try {
 			AirProFilter currentDayFilter = airProFlightFilters.filter();
 			ResponseVO responseVO = new ResponseVO();
-			responseVO.setFlights(airProFlightsDao.findByDepartureTimeBetween(currentDayFilter.getStartDate(),
-					currentDayFilter.getEndDate()));
+			responseVO.setFlights(airProDefaultModelMapper.mapList(airProFlightsDao.findByDepartureTimeBetween(currentDayFilter.getStartDate(),
+					currentDayFilter.getEndDate()), Flights.class));
 			return responseVO;
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -72,10 +75,14 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 			if (!airProFlightsDao.existsByFlightCodeIgnoreCase(flightCode)) {
 				throw new BusinessException("Flight Code Doesn't Exists", HttpStatus.BAD_REQUEST);
 			}
+			
+			int a = 2/0;
 
 			ResponseVO responseVO = new ResponseVO();
-			responseVO.setFlights(airProFlightsDao.findByDepartureTimeBetweenAndFlightCodeIgnoreCase(
-					flightCodeFilter.getStartDate(), flightCodeFilter.getEndDate(), flightCodeFilter.getFlightCode()));
+			
+			responseVO.setFlights(airProDefaultModelMapper.mapList(airProFlightsDao.findByDepartureTimeBetweenAndFlightCodeIgnoreCase(
+					flightCodeFilter.getStartDate(), flightCodeFilter.getEndDate(), flightCodeFilter.getFlightCode()),Flights.class));
+			
 			return responseVO;
 
 		} catch (Exception ex) {
