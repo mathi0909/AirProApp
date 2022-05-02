@@ -1,5 +1,7 @@
 package com.airpro.flights.service.impl;
 
+import java.time.LocalDateTime;
+
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -87,6 +89,7 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 	public Flights flights(Flights flights) throws SystemException {
 		log.info("Enter save flights ");
 		try {
+			validateArrivalDepartureDate(flights.getDepartureTime(),flights.getArrivalTime());
 			return airProFlightsDao.save(flights);
 		} catch (Exception ex) {
 			log.error(ex.getMessage());
@@ -132,6 +135,34 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 			throw ExceptionResolver.resolve(ex);
 		} finally {
 			log.info("Exists Get Flights by Flight Code ");
+		}
+
+	}
+	
+	/**
+	 * 
+	 * Validate the arrival and departure dates.
+	 * 
+	 * 
+	 * @param departuredate
+	 * @param arrivaldate
+	 * @throws SystemException
+	 */
+	private void validateArrivalDepartureDate(LocalDateTime departuredate,LocalDateTime arrivaldate) throws SystemException  {
+		log.info("Enter validateArrivalDepartureDate ");
+		try {
+			if(departuredate==null || arrivaldate==null)
+				throw new BusinessException(env.getProperty("error.air.pro.missing.departuredate.or.arrivaldate"),
+						HttpStatus.BAD_REQUEST);
+			if(!departuredate.isBefore(arrivaldate))
+				throw new BusinessException(env.getProperty("error.air.pro.invalid.departuredate.or.arrivaldate"),
+						HttpStatus.BAD_REQUEST);
+			
+		}catch (Exception ex) {
+			log.error(ex.getMessage());
+			throw ExceptionResolver.resolve(ex);
+		} finally {
+			log.info("Exists validateArrivalDepartureDate");
 		}
 
 	}

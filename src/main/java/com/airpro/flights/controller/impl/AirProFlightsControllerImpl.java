@@ -1,5 +1,7 @@
 package com.airpro.flights.controller.impl;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,7 +62,7 @@ public class AirProFlightsControllerImpl implements IAirProFlightsController {
 
 	@PostMapping("/flights")
 	@Operation(summary=CommonConstant.SWAGGER_ADD_FLIGHTS_BY_CODE_API_SUMMARY,description=CommonConstant.SWAGGER_ADD_FLIGHTS_API_DESCRIPTION)
-	public Flights flights(@RequestBody Flights flight) throws SystemException {
+	public Flights flights(@Valid  @RequestBody Flights flight) throws SystemException {
 		log.info("Enter save flights ");
 		try {
 			return airProFlightService.flights(flight);
