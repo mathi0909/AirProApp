@@ -46,6 +46,11 @@ public class AirProFlightServiceImpl implements IAirProFlightService {
 	public ResponseVO flights(String flightCode) {
 		log.info("Enter get flights ");
 		AirProFilter flightCodeFilter = airProFlightFilters.filter(flightCode);
+		
+		if(!airProFlightsDao.existsByFlightCodeIgnoreCase(flightCode)) {
+			log.info("====================== No thing Presesnt ============");
+		}
+		
 		ResponseVO responseVO = new ResponseVO();
 		responseVO.setFlights(
 				airProFlightsDao.findByDepartureTimeBetweenAndFlightCodeIgnoreCase(
